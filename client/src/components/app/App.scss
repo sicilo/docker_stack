@@ -1,0 +1,149 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-logo {
+  height: 30vmin;
+  pointer-events: none;
+}
+
+.App-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.App-image {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+    border: 4px solid #cedde0;
+    border-radius: 5px;
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #49d7f3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+
+    &:hover {
+      background-color: darken(#4ad5f8, 10%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: red;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App-data {
+  // outline: 1px solid red;
+  padding-bottom: 1em;
+  display: flex;
+  justify-content: center;
+
+  table {
+    border-radius: 4px;
+    background-color: #ebebeb;
+    color: #474747;
+
+    thead {
+      tr {
+
+        th {
+          padding: 10px;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+
+        td:nth-child(3),
+        td:last-child {
+          padding: 5px;
+        }
+
+        td:last-child {
+          display: flex;
+          flex-direction: column;
+
+          button {
+            margin-bottom: 4px;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+
+            &.__delete {
+              background-color: rgb(146, 57, 57);
+              color: white;
+
+              &:hover {
+                cursor: pointer;
+                opacity: .9;
+              }
+            }
+
+            &.__update {
+              background-color: rgb(59, 121, 156);
+              color: white;
+
+              &:hover {
+                cursor: pointer;
+                opacity: .9;
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+}

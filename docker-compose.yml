@@ -1,0 +1,70 @@
+version: '3.8'
+
+networks:
+  frontend-react:
+  backend-mysql:
+  backend-mongo:
+    driver: bridge
+volumes:
+  mysql-data:
+  mongo-data:
+    driver: local
+
+services:
+  mysql_database:
+    container_name: mysql
+    image: mysql:5.7
+    networks:
+      - backend-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=P4nd4C07
+      - MYSQL_DATABASE=agreements
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=P4nd4C07
+    volumes:
+      - mysql-data:/var/lib/mysql
+  mongo_database:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - backend-mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=P4nd4C07
+    volumes:
+      - mongo-data:/data/db
+  server:
+    container_name: server
+    image: api-server
+    depends_on:
+      - mysql_database
+      - mongo_database
+    networks:
+      - backend-mongo
+      - frontend-react
+      - backend-mysql
+    volumes:
+      - "./server:/api"
+    ports:
+      - "5000:5000"
+  client:
+    container_name: client
+    image: react-app
+    stdin_open: true
+    depends_on:
+      - server
+    networks:
+      - frontend-react
+    volumes:
+      - './client:/app'
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5

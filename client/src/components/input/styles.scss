@@ -1,0 +1,59 @@
+.App-form {
+  width: 250px;
+
+  .App-input {
+    margin-bottom: 10px;
+
+    label {
+      display: block;
+      font-size: 15px;
+      text-align: left;
+      color: white;
+      padding-bottom: 5px;
+    }
+
+    input {
+      padding: 5px 5px 5px 10px;
+      border: none;
+      border-radius: 2px;
+      font-size: 18px;
+      height: 35px;
+
+      width: 100%;
+
+      &:hover,
+      &:active,
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    &.__file {
+      label {
+        background: #61DBFB;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'Rubik', sans-serif;
+        font-size: inherit;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        outline: none;
+        padding: 1rem 50px;
+        position: relative;
+        transition: all 0.3s;
+        vertical-align: middle;
+
+        &:hover {
+          background-color: darken(#50c8e6, 10%);
+        }
+      }
+
+      input {
+        display: none;
+      }
+    }
+  }
+}
